@@ -1,5 +1,6 @@
 package org.vilojona;
 
+import io.quarkus.logging.Log;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 
@@ -18,6 +19,8 @@ class GreetingResourceTest {
     void testFXMainControllerInteraction() {
         // Perform interaction and assertions
         String response = pingPongService.interaction("Barcelona");
+        
+        Log.infof("Wise service response: %s", response);
         assertTrue(response.contains("Barcelona"), "Response should contain 'Barcelona'");
     }
 }

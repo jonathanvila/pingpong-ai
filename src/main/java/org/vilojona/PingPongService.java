@@ -21,8 +21,8 @@ public class PingPongService {
     }
    
     public String interaction(String message) {
-        var sendCurious = sendCurious(message);
+        var curiousAnswer = sendCurious(message);
 
-        return sendWise(sendCurious);
+        return sendWise(curiousAnswer);
     }
 }
