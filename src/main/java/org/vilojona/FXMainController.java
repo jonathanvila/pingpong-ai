@@ -43,7 +43,10 @@ public class FXMainController {
     Parent root;
 
     @Inject
-    PingPongService pingPongService;
+    CuriousService curiousService;    
+    
+    @Inject
+    WiseService wiseService;
 
     @FXML
     public void initialize() {
@@ -60,11 +63,17 @@ public class FXMainController {
         if (!message.isEmpty() && !number.isEmpty()) {
             int times = Integer.parseInt(number);
             while (times-- > 0) {
-                message = pingPongService.interaction(message);
+                message = interaction(message);
             }
         }
     }
+    public String interaction(String message) {
+        var sendCurious = sendCurious(message);
+        System.out.println("Message to curious sent");
 
+        System.out.println("Message to wise sent");
+        return sendWise(sendCurious);
+    }
 
     @FXML
     private void handleClickMeAction(KeyEvent event) {
@@ -99,14 +108,14 @@ public class FXMainController {
     
     @ActivateRequestContext
     public String sendCurious(String topic) {
-        var question = pingPongService.sendCurious(topic);
+        var question = curiousService.chat(topic);
         showMessage(question, true);
         return question;
     }
 
     @ActivateRequestContext
     public String sendWise(String topic) {
-        var response = pingPongService.sendWise(topic);
+        var response = wiseService.chat(topic);
         showMessage(response, false);
         return response;
     }
