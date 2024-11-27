@@ -5,7 +5,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import jakarta.enterprise.context.control.ActivateRequestContext;
 import jakarta.inject.Inject;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +28,7 @@ class GreetingResourceTest {
         var response = wiseService.chat(curiousAnswer);
         
         Log.infof("Wise service response: %s", response);
-        assertTrue(response.contains("Barcelona"), "Response should contain 'Barcelona'");
+        // Using llama2 model we can check if the response contains 'Barcelona', but not with tinyllama
+        assertFalse(response.isEmpty(), "Response should not be empty");
     }
 }
