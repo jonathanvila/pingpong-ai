@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+@QuarkusMain
 public class Main implements QuarkusApplication {
     private static final String SERVER_URL = "http://localhost:8080/chat";
 
