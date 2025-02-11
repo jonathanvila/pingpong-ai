@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-application
+  labels:
+    app: my-application
+spec:
+  replicas: 3  # Number of pod replicas you want to run
+  selector:
+    matchLabels:
+      app: my-application
+  template:
+    metadata:
+      labels:
+        app: my-application
+    spec:
+      containers:
+        - name: my-application
+          image: your-registry/your-image:tag  # Replace with your image
+          ports:
+            - containerPort: 8080  # Replace with your application port
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+          # Add any environment variables your application needs
+          livenessProbe:
+            httpGet:
+              path: /health  # Replace with your health check endpoint
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health  # Replace with your health check endpoint
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10

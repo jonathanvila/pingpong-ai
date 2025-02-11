@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-ai-deployment
+  labels:
+    app: pingpong-ai
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pingpong-ai
+  template:
+    metadata:
+      labels:
+        app: pingpong-ai
+    spec:
+      containers:
+        - name: pingpong-ai-container
+          image: your-docker-repo/pingpong-ai:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: QUARKUS_PROFILE
+              value: prod
+            - name: JAVA_OPTS
+              value: "-Dquarkus.http.host=0.0.0.0"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /deployments/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: pingpong-ai-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingpong-ai-service
+spec:
+  selector:
+    app: pingpong-ai
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

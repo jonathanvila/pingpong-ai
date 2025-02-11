@@ -71,6 +71,21 @@
             <artifactId>quarkus-langchain4j-ollama-devservices</artifactId>
             <version>0.17.1</version>
         </dependency>
+        <dependency>
+             <groupId>org.eclipse.jdt</groupId>
+             <artifactId>org.eclipse.jdt.annotation</artifactId>
+             <version>2.2.600</version>
+         </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
