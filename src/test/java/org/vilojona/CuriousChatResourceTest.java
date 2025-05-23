@@ -41,15 +41,33 @@ class CuriousChatResourceTest {
     @ActivateRequestContext
     void testChatEndpoint() {
         given()
-            .when()
+                .when()
                 .body("Barcelona")
                 .contentType(ContentType.TEXT)
                 .post("/chat/3")
-            .then()
+                .then()
                 .statusCode(200)
                 .contentType(ContentType.TEXT)
                 .body(not(empty()))
-                .body(org.hamcrest.Matchers.stringContainsInOrder("Question:", "Answer:", "Question:", "Answer:", "Question:", "Answer:"));
-                
+                .body(org.hamcrest.Matchers.stringContainsInOrder("Question:", "Answer:", "Question:", "Answer:",
+                        "Question:", "Answer:"));
+
+    }
+
+    @Test
+    public void dummy() {
+        int a = 1;
+        int b = 2;
+        int c = 3;
+        int d = 4;
+        int f = 5;
+        int g = 6;
+        int h = 7;
+        int i = 8;
+        int j = 9;
+        int k = 10;
+        int l = 11;
+        int e = a + b + c + d + f + g + h + i + j + k + l;
+        System.out.println(e);
     }
 }
